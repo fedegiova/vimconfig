@@ -20,8 +20,6 @@ let g:miniBufExplBuffersNeeded = 0
 let g:miniBufExplUseSingleClick = 1 " If you would like to single click on tabs rather than double clicking on them to goto the selected buffer. 
 let g:miniBufExplTabWrap = 1
 
-Plugin 'YankRing.vim'
-
 Plugin 'kien/ctrlp.vim'
 let g:ctrlp_working_path_mode = ''
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:100'
@@ -33,12 +31,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'freitass/todo.txt-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'jiangmiao/auto-pairs.git'
 " Consider RTAGS for indexing
 
-
-" vim-airline
-" ---------------------------------------------------
-Plugin 'bling/vim-airline'
 
 if has('gui_running')
 let g:airline_powerline_fonts = 1
@@ -72,6 +69,7 @@ autocmd BufNewFile,BufReadPost *.qml set filetype=qml
 autocmd BufNewFile,BufReadPost *.rst set filetype=rst
 
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+set guifont=Source\ Code\ Pro\ Regular\ 11
 
 "see: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 
@@ -115,7 +113,10 @@ nnoremap k gk
 
 nnoremap ; :
 inoremap jj <ESC>
+imap <C-space> <Esc>
 
+nmap H :MBEbp<cr>
+nmap L :MBEbn<cr>
 map <A-Left> :MBEbp<cr>
 map <A-Right> :MBEbn<cr>
 map <C-Left> :MBEbp<cr>
@@ -131,21 +132,20 @@ nmap <leader>g :Ag <c-r>=expand("<cword>")<cr>
 "map <A-Right> :MBEbb<cr>
 nmap <leader>r :silent! execute '!ssh 172.31.4.4 /sw/Project/artifacts/bin/ProcessControl restart-all' \| :redraw!<cr> 
 
-imap j <Down>
-imap k <Up>
-imap l <Right>
-imap h <Left>
-nmap j <Down>
-nmap k <Up>
-nmap l <Right>
-nmap h <Left>
+inoremap <silent> <Up> <ESC><Up>
+inoremap <silent> <Down> <ESC><Down>
+inoremap <silent> <Left> <ESC><Left>
+inoremap <silent> <Right> <ESC><Right>
+" imap j <Down>
+" imap k <Up>
+" imap l <Right>
+" imap h <Left>
+" nmap j <Down>
+" nmap k <Up>
+" nmap l <Right>
+" nmap h <Left>
 
-map  <Leader><Leader>f <Plug>(easymotion-bd-f)
-
-
-
-
-
+map  <Leader>f <Plug>(easymotion-bd-f)
 
 
 set completeopt=menuone
